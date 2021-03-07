@@ -1,0 +1,5 @@
+#Wire Colors:
+Red:   +5V    
+Black: gnd
+Brown: clk
+White: data

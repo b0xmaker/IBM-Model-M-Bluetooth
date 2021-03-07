@@ -11,6 +11,12 @@
     initial file created 
 */
 
+
+int dataCount = 0;
+int clockCount = 0;
+int clockTime = 100; // amount of time to wait before resetting data count
+int clockCounter = 0; //current value of clock timer
+
 void setup() {
   //start serial connection
   Serial.begin(115200);
@@ -28,23 +34,49 @@ void setup() {
 
 void loop() {
 
-  
-  //read the data line
+   //read the data line
   int dataLine  = digitalRead(2);
   
-  //print info from data line 
-  if (dataLine != 1)
-
-  {
-  Serial.println(dataLine);  
-  }
-  
-
   // read clock line
   int clockLine = digitalRead(16);
+ for (int i = 0; i< clockTime; i++)
+ {
 
-  // print info from clock line 
-  Serial.println(clockLine);
+  if (clockLine != 1)
+  {
+   clockCount++;
+  }
+
   
+if (dataLine != 1)
+  {   
+    dataCount++; 
+  }
+
+  
+
+
+}
+
+  if(dataCount != 0)
+  {
+    Serial.print("data: ");
+    Serial.print(dataCount);  //print info from data line 
+
+  }
+
+if(dataCount != 0)
+{
+    Serial.print(" clock: ");
+  Serial.println(clockCount);  // print info from clock line 
+}
+
+  dataCount = 0;
+  clockCount = 0;
+/*
+  
+*/
+
+
 
 }
